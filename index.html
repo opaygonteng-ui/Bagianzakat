@@ -706,31 +706,53 @@ updateSelect();
 
 function exportPDF(){
 
-let tgl = new Date().toLocaleDateString();
+let elLaporan =
+document.getElementById("laporanPDF");
 
-pdfInfo.innerHTML =
+let elRing =
+document.getElementById("ringkasan");
+
+let elHasil =
+document.getElementById("hasil");
+
+let elInfo =
+document.getElementById("pdfInfo");
+
+let elRingPdf =
+document.getElementById("pdfRingkasan");
+
+let elTabelPdf =
+document.getElementById("pdfTabel");
+
+
+let tgl =
+new Date().toLocaleDateString();
+
+elInfo.innerHTML =
 "Masjid : "+namaMasjid+"<br>"+
 "Tanggal : "+tgl+"<br>"+
 "Total zakat : "+totalZakat+" kg";
 
-pdfRingkasan.innerHTML =
-ringkasan.innerHTML;
 
-pdfTabel.innerHTML =
-hasil.innerHTML;
+elRingPdf.innerHTML =
+elRing.innerHTML;
 
-let el =
-document.getElementById(
-"laporanPDF"
-);
+elTabelPdf.innerHTML =
+elHasil.innerHTML;
 
-el.style.display="block";
 
-html2pdf().from(el).save(
+elLaporan.style.display="block";
+
+
+setTimeout(function(){
+
+html2pdf().from(elLaporan).save(
 "laporan_zakat.pdf"
 );
 
-el.style.display="none";
+elLaporan.style.display="none";
+
+},300);
 
 }
 </script>
